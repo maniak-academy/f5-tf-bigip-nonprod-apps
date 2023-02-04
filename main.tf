@@ -17,9 +17,7 @@ terraform {
 
 provider "vault" {
   address = "https://vault-maniak-public-vault-41264194.d96179f0.z1.hashicorp.cloud:8200"
-  # token   = var.vault_token
-  username  = var.vault_user
-  password  = var.vault_pass
+  token   = var.vault_token
   namespace = "admin/network"
 }
 
