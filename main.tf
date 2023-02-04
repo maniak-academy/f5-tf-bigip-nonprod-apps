@@ -11,10 +11,6 @@ terraform {
       source  = "F5Networks/bigip"
       version = "1.16.2"
     }
-    vault = {
-      source  = "hashicorp/vault"
-      version = "3.12.0"
-    }
   }
 }
 
