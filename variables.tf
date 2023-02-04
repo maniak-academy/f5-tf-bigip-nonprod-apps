@@ -21,7 +21,7 @@ variable "vaultaddress" {
 variable "vault_user" {
   description = "vault user"
 }
-  
+
 variable "vault_pass" {
   description = "vault pass"
 }
