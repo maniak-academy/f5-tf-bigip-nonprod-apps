@@ -35,5 +35,65 @@ module "tfc-webfront-newapp" {
 }
 ```
 
-$Env:VAULT_NAMESPACE = "networking"
 
+
+Configure Vault
+Configure PKI Engine
+
+```
+vault secrets enable pki
+vault secrets tune -max-lease-ttl=87600h pki
+```
+
+2. Generate root CA and Configure CA and CRL URL
+
+
+```
+vault write -field=certificate pki/root/generate/internal common_name=maniak.academy ttl=87600h > CA_cert.crt
+
+     
+vault write pki/config/urls issuing_certificates="$VAULT_ADDR/v1/pki/ca" crl_distribution_points="$VAULT_ADDR/v1/pki/crl"
+```
+
+
+3. Generate Intermediate CA
+
+```
+vault secrets enable -path=pki_int pki
+vault secrets tune -max-lease-ttl=43800h pki_int
+```
+
+4. Execute the following command to generate an intermediate and save the CSR as pki_intermediate.csr
+
+```
+vault write -format=json pki_int/intermediate/generate/internal \
+     common_name="maniak.academy Intermediate Authority" \
+     | jq -r '.data.csr' > pki_intermediate.csr
+```
+
+5. Sign the intermediate certificate with the root CA private key, and save the generated certificate as intermediate.cert.pem.
+
+```
+vault write -format=json pki/root/sign-intermediate csr=@pki_intermediate.csr \
+     format=pem_bundle ttl="43800h" \
+     | jq -r '.data.certificate' > intermediate.cert.pem
+```
+
+6. Once the CSR is signed and the root CA returns a certificate, it can be imported back into Vault.
+
+```
+vault write pki_int/intermediate/set-signed certificate=@intermediate.cert.pem
+```
+
+7. Create a Role named maniak-dot-academy which allows subdomains.
+
+```
+vault write pki_int/roles/maniak-dot-academy \
+ allowed_domains=maniak.academy” \
+ allow_subdomains=true \
+ ttls="10m" 
+
+```
+
+
+Done… let’s move onto the next part.
