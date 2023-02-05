@@ -16,8 +16,8 @@ terraform {
 
 
 provider "vault" {
-  address   = "http://http://192.168.86.247:8200"
-  token     = var.vault_token
+  address = "http://http://192.168.86.247:8200"
+  token   = var.vault_token
 }
 
 provider "bigip" {
