@@ -16,9 +16,8 @@ terraform {
 
 
 provider "vault" {
-  address   = "https://vault-maniak-public-vault-41264194.d96179f0.z1.hashicorp.cloud:8200"
+  address   = "http://http://192.168.86.247:8200"
   token     = var.vault_token
-  namespace = "admin/network"
 }
 
 provider "bigip" {
