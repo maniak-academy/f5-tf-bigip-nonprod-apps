@@ -1,5 +1,5 @@
 module "tfc-app-w-module-v1" {
-  source              = "../terraform-bigip-app"
+  source              = "sebbycorp/app/bigip
   version             = "1.0.5"
   tenant              = "tfc-app-w-module-v1"
   common_name         = "tfc-app-w-module-v1.maniak.academy"
@@ -7,7 +7,6 @@ module "tfc-app-w-module-v1" {
   vault_pki_backend   = "pki_int"
   vip_address         = "192.168.57.200"
   pki_name            = "maniak-dot-academy"
-  namespace           = "admin/network"
   pool_members_port   = "443"
   monitor             = "https"
   load_balancing_mode = "least-connections-member"
