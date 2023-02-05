@@ -14,14 +14,3 @@ variable "vault_token" {
   description = "vault token"
   default     = ""
 }
-variable "vaultaddress" {
-  description = "vault address"
-  default     = ""
-}
-variable "vault_user" {
-  description = "vault user"
-}
-
-variable "vault_pass" {
-  description = "vault pass"
-}
