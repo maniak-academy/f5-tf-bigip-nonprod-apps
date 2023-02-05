@@ -16,7 +16,7 @@ terraform {
 
 
 provider "vault" {
-  address = "http://http://192.168.86.247:8200"
+  address = "http://192.168.86.247:8200"
   token   = var.vault_token
 }
 
