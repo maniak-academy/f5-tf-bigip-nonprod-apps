@@ -1,4 +1,4 @@
-module "www.webapp1.com" {
+module "www-webapp1-com" {
   source              = "sebbycorp/app/bigip"
   version             = "1.0.9"
   tenant              = "www.webapp1.com"
