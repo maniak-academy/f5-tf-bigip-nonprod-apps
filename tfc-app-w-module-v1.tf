@@ -10,6 +10,6 @@ module "tfc-app-w-module-v1" {
   pool_members_port   = "443"
   monitor             = "https"
   load_balancing_mode = "least-connections-member"
-  pool_members        = ["10.11.6.1", "10.11.6.2", "10.11.6.3"]
+  pool_members        = ["172.16.100.1", "172.16.100.2", "172.16.100.3"]
 }
 
