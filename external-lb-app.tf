@@ -1,4 +1,4 @@
-module "external-lb-web" {
+module "external-lb" {
   source              = "sebbycorp/app/bigip"
   version             = "1.0.9"
   tenant              = "external"
